@@ -7,10 +7,18 @@ Convert a shp into a raster image according to a referece raster
 from osgeo import ogr, gdal
 import subprocess
 
-InputVector = 'C:\\Users\\Yongyao Jiang\\Downloads\\test\\training2\\non-palm.shp'
-OutputImage = 'C:\\Users\\Yongyao Jiang\\Downloads\\test\\training2\\non-palm.tif'
+# =============================================================================
+# # for test 1
+# InputVector = 'C:\\Users\\Yongyao Jiang\\Downloads\\test\\training2\\non-palm.shp'
+# OutputImage = 'C:\\Users\\Yongyao Jiang\\Downloads\\test\\training2\\non-palm.tif'
+# 
+# RefImage = 'C:\\Users\\Yongyao Jiang\\Downloads\\test\\mask.tif'
+# =============================================================================
 
-RefImage = 'C:\\Users\\Yongyao Jiang\\Downloads\\test\\mask.tif'
+# for test 2
+InputVector = 'C:\\Users\\Yongyao Jiang\\Downloads\\test2\\training\\non-palm.shp'
+OutputImage = 'C:\\Users\\Yongyao Jiang\\Downloads\\test2\\training\\non-palm.tif'
+RefImage = 'C:\\Users\\Yongyao Jiang\\Downloads\\test2\\mask.tif'
 
 gdalformat = 'GTiff'
 datatype = gdal.GDT_Byte

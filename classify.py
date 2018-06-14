@@ -17,8 +17,12 @@ gdal.UseExceptions()
 gdal.AllRegister()
 
 # read training samples as TIF with same dimensions as the Landsat image
-samples1 = 'C:\\Users\\Yongyao Jiang\\Downloads\\test\\training2\\non-palm.tif'
-samples2 = 'C:\\Users\\Yongyao Jiang\\Downloads\\test\\training2\\palm.tif'
+# =============================================================================
+# samples1 = 'C:\\Users\\Yongyao Jiang\\Downloads\\test\\training2\\non-palm.tif'
+# samples2 = 'C:\\Users\\Yongyao Jiang\\Downloads\\test\\training2\\palm.tif'
+# =============================================================================
+samples1 = 'C:\\Users\\Yongyao Jiang\\Downloads\\test2\\training\\non-palm.tif'
+samples2 = 'C:\\Users\\Yongyao Jiang\\Downloads\\test2\\training\\palm.tif'
 roi_ds_1 = io.imread(samples1)
 roi_1 = np.array(roi_ds_1, dtype='uint8')
 roi_ds_2 = io.imread(samples2)
@@ -46,12 +50,16 @@ def array_to_raster(array, output_path, ref_path):
     Output.GetRasterBand(1).WriteArray(array)
     Output.FlushCache()  # Write to disk.
 
-landsat_path = 'C:\\Users\\Yongyao Jiang\\Downloads\\test\\landsat_clip2.tif'
-radar_path = 'C:\\Users\\Yongyao Jiang\\Downloads\\test\\radar_clip2.tif'
+# =============================================================================
+# landsat_path = 'C:\\Users\\Yongyao Jiang\\Downloads\\test\\landsat_clip2.tif'
+# radar_path = 'C:\\Users\\Yongyao Jiang\\Downloads\\test\\radar_clip2.tif'
+# =============================================================================
+landsat_path = 'C:\\Users\\Yongyao Jiang\\Downloads\\test2\\landsat_clip.tif'
+radar_path = 'C:\\Users\\Yongyao Jiang\\Downloads\\test2\\radar_clip.tif'
 landsat = read(landsat_path)
 radar = read(radar_path)
-img = np.dstack((landsat, radar))
-# img = landsat
+# img = np.dstack((landsat, radar))
+img = landsat
 
 # This method doesn't seem to work because the grey value is about 0.02...    
 # =============================================================================
@@ -125,8 +133,8 @@ print(metrics.classification_report(y_test, predicted))
 print(metrics.confusion_matrix(y_test, predicted))
 
 # now you can save it to a file
-# model_path = 'C:\\Users\\Yongyao Jiang\\Downloads\\test\\rf_model.pkl'
-# joblib.dump(rf, 'C:\\Users\\Yongyao Jiang\\Downloads\\test\\rf_model.pkl') 
+model_path = 'C:\\Users\\Yongyao Jiang\\Downloads\\test2\\model.pkl'
+joblib.dump(rf, model_path) 
 # and later you can load it
 # model = joblib.load(model_path)
 
@@ -135,7 +143,7 @@ predict = model.predict(img.reshape(cols*rows, band_num))
 output = predict.reshape(rows, cols)*mask
 
 plt.imshow(output, cmap=plt.cm.Spectral)
-path = 'C:\\Users\\Yongyao Jiang\\Downloads\\test\\classification.tif'
+path = 'C:\\Users\\Yongyao Jiang\\Downloads\\test2\\classification.tif'
 # io.imsave(path, output)
 array_to_raster(output, path, landsat_path)
 
