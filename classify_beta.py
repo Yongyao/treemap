@@ -17,8 +17,8 @@ gdal.UseExceptions()
 gdal.AllRegister()
 
 # read training samples as TIF with same dimensions as the Landsat image
-samples1 = '../Data/training/non-palm.tif'
-samples2 = '../Data/training/palm.tif'
+samples1 = '/Users/yjiang/Documents/pythonWorkspace/treemap/Data/training/non-palm.tif'
+samples2 = '/Users/yjiang/Documents/pythonWorkspace/treemap/Data/training/palm.tif'
 roi_ds_1 = io.imread(samples1)
 roi_1 = np.array(roi_ds_1, dtype='uint8')
 roi_ds_2 = io.imread(samples2)
@@ -46,8 +46,8 @@ def array_to_raster(array, output_path, ref_path):
     Output.GetRasterBand(1).WriteArray(array)
     Output.FlushCache()  # Write to disk.
 
-landsat_path = '../Data/landsat_clip.tif'
-radar_path = '../Data/radar_clip.tif'
+landsat_path = '/Users/yjiang/Documents/pythonWorkspace/treemap/Data/landsat_clip.tif'
+radar_path = '/Users/yjiang/Documents/pythonWorkspace/treemap/Data/radar_clip.tif'
 landsat = read(landsat_path)
 radar = read(radar_path)
 # img = np.dstack((landsat, radar))
@@ -101,8 +101,8 @@ print(metrics.classification_report(y_test, predicted))
 print(metrics.confusion_matrix(y_test, predicted))
 
 # now you can save it to a file
-model_path = '../Data/py3/model.pkl'
-joblib.dump(rf, model_path) 
+# model_path = '/Users/yjiang/Documents/pythonWorkspace/treemap/Data/model.joblib'
+# joblib.dump(rf, model_path) 
 # and later you can load it
 # model = joblib.load(model_path)
 
@@ -111,7 +111,7 @@ predict = model.predict(img.reshape(cols*rows, band_num))
 output = predict.reshape(rows, cols)*mask
 
 plt.imshow(output, cmap=plt.cm.Spectral)
-path = '../Data/py3/classification.tif'
+path = '/Users/yjiang/Documents/pythonWorkspace/treemap/Data/classification.tif'
 # io.imsave(path, output)
 array_to_raster(output, path, landsat_path)
 

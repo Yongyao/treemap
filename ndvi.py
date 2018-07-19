@@ -24,7 +24,7 @@ def array_to_raster(array, output_path, ref_path):
     return Output, Output.GetRasterBand(1)
 
 # read landsat image
-input_image = 'C:\\Users\\Yongyao Jiang\\Downloads\\test\\stack.tif'
+input_image = '/Users/yjiang/Documents/pythonWorkspace/treemap/Data/geoeye_palm/subsets5_all_bands/500_0.tif'
 img_ds = gdal.Open(input_image, gdal.GA_ReadOnly)
 img = np.zeros((img_ds.RasterYSize, img_ds.RasterXSize, img_ds.RasterCount),
                gdal_array.GDALTypeCodeToNumericTypeCode(img_ds.GetRasterBand(1).DataType))
@@ -43,5 +43,5 @@ ndvi = (nir-red)/(nir + red)
 plt.imshow(ndvi)
 
 # stack.tif doesn't have CRS/projection info
-ref_img = 'C:\\Users\\Yongyao Jiang\\Downloads\\test\\RT_LC08_L1TP_117056_20180430_20180502_01_T1_B1.TIF'
-array_to_raster(ndvi, 'C:\\Users\\Yongyao Jiang\\Downloads\\test\\ndvi.tif' , ref_img)
+ref_img = '/Users/yjiang/Documents/pythonWorkspace/treemap/Data/geoeye_palm/subsets5_all_bands/500_0.tif'
+array_to_raster(ndvi, '/Users/yjiang/Documents/pythonWorkspace/treemap/Data/geoeye_palm/ndvi.tif' , ref_img)
