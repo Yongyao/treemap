@@ -13,7 +13,7 @@ from skimage.feature import peak_local_max
 import skimage.io as io
 from numpy import array
 
-in_path = '/Users/yjiang/Documents/pythonWorkspace/treemap/Data/geoeye_palm/subsets5_all_bands/500_0.tif'
+in_path = '/Users/yjiang/Documents/pythonWorkspace/treemap/Data/geoeye_palm/subsets5_all_bands/0_9000.tif'
 img = io.imread(in_path)
 im = img[:,:,3]
 
