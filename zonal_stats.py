@@ -13,8 +13,8 @@ from rasterstats import zonal_stats
 
 # https://gis.stackexchange.com/questions/208441/zonal-statistics-of-a-polygon-and-assigning-mean-value-to-the-polygon 
 # https://gis.stackexchange.com/questions/126965/gdal-rasterize-error-attempt-to-create-0x0-dataset-is-illegal 
-stats = zonal_stats("Data/zonal_test/bra_saveas_small.shp", "Data/zonal_test/bra_ndvi.tiff",
-            stats=['count', 'mean'])
+stats2 = zonal_stats("/Users/yjiang/Downloads/bra_saveasS/bra_saveasS.shp", "Data/zonal_test/bra_ndvi.tiff",
+            stats=['count', 'mean'], geojson_out=True)
 
-for stat in stats:
-    print stat['mean'], stat['count']
+for stat in stats2:
+    print stat['properties']['mean'], stat['properties']['count'], stat['properties']['ID_3']
